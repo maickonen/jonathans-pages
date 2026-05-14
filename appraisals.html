@@ -153,22 +153,15 @@
     align-items: center;
     overflow: hidden;
   }
-  .hero-img {
-    position: absolute;
-    inset: 0;
-    background-image: url('https://cdn.shopify.com/s/files/1/0193/8119/0720/files/jewelry-appraisals-troy-mi.jpg?v=1555536613');
-    background-size: cover;
-    background-position: center;
-  }
   .hero::before {
     content: '';
     position: absolute;
     inset: 0;
-    z-index: 1;
     background:
-      linear-gradient(105deg, rgba(28,43,66,0.88) 0%, rgba(28,43,66,0.55) 60%, rgba(28,43,66,0.25) 100%);
+      radial-gradient(ellipse 60% 80% at 70% 50%, rgba(176,107,58,0.08) 0%, transparent 70%),
+      linear-gradient(135deg, rgba(28,43,66,0.98) 0%, rgba(28,43,66,0.75) 100%);
   }
-  .hero-inner { position: relative; z-index: 2; max-width: 640px; }
+  .hero-inner { position: relative; z-index: 2; max-width: 640px; text-align: left; }
   .hero .label { color: var(--copper-light); margin-bottom: 20px; }
   .hero h1 {
     font-family: 'Cormorant Garamond', serif;
@@ -516,7 +509,6 @@
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-img"></div>
   <div class="container">
     <div class="hero-inner">
       <div class="label">Expert Jewelry Appraisals</div>
