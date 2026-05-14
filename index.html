@@ -1,368 +1,308 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Jonathan's Jewelry</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jonathan's Jewelry — Salt Lake City's Fine Jewelers</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --copper:        #B46A3C;
+    --copper-light:  #C8845A;
+    --copper-dark:   #8B4F28;
+    --copper-glow:   rgba(180,106,60,0.12);
+    --navy:          #1C2B42;
+    --charcoal:      #2A2A2A;
+    --cream:         #F5F2EE;
+    --warm-white:    #FDFCFA;
+    --white:         #ffffff;
+    --text-dark:     #1a1a1a;
+    --text-body:     #4a4a4a;
+    --text-med:      #6e6e6e;
+    --border:        #E5E0DA;
+  }
 
-    :root {
-      --copper: #B46A3C;
-      --navy:   #1B2A4A;
-      --cream:  #FAF7F2;
-      --text:   #2C2C2C;
-    }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Inter', sans-serif; color: var(--text-body); background: var(--warm-white); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+  a { color: inherit; text-decoration: none; }
 
-    body {
-      font-family: 'Inter', sans-serif;
-      background: var(--cream);
-      color: var(--text);
-    }
+  /* ── ANNOUNCEMENT BAR ── */
+  .announce { background: var(--charcoal); color: rgba(255,255,255,0.75); font-size: 11px; letter-spacing: 2px; text-transform: uppercase; text-align: center; padding: 10px 24px; }
 
-    /* ── HEADER ─────────────────────────────────── */
-    header {
-      background: var(--navy);
-      padding: 0 2rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      height: 72px;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      box-shadow: 0 2px 12px rgba(0,0,0,.35);
-    }
+  /* ── HEADER ── */
+  header { background: var(--navy); position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 16px rgba(0,0,0,0.3); }
+  .hdr { max-width: 1280px; margin: 0 auto; padding: 0 48px; height: 76px; display: flex; align-items: center; justify-content: space-between; gap: 32px; }
 
-    .logo {
-      font-family: 'Cormorant Garamond', serif;
-      font-weight: 300;
-      font-size: 1.55rem;
-      letter-spacing: .08em;
-      color: #fff;
-      text-decoration: none;
-    }
+  .logo { font-family: 'Cormorant Garamond', serif; font-size: 15px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: white; flex-shrink: 0; line-height: 1.2; }
+  .logo span { display: block; font-size: 9px; letter-spacing: 4px; font-weight: 400; color: rgba(255,255,255,0.45); margin-top: 2px; }
 
-    .logo span {
-      color: var(--copper);
-    }
+  nav { display: flex; gap: 32px; }
+  nav a { font-size: 11px; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.75); transition: color .25s; position: relative; padding-bottom: 2px; }
+  nav a::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 1px; background: var(--copper-light); transition: width .25s; }
+  nav a:hover { color: white; }
+  nav a:hover::after { width: 100%; }
 
-    nav {
-      display: flex;
-      gap: 2rem;
-      align-items: center;
-    }
+  .hdr-actions { display: flex; align-items: center; gap: 16px; flex-shrink: 0; }
+  .btn-book { background: var(--copper); color: white; font-size: 10px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; padding: 11px 22px; transition: background .25s; border: none; cursor: pointer; display: inline-block; }
+  .btn-book:hover { background: var(--copper-dark); }
 
-    nav a {
-      font-family: 'Inter', sans-serif;
-      font-size: .8rem;
-      font-weight: 500;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,.85);
-      text-decoration: none;
-      transition: color .2s;
-    }
+  /* ── HERO ── */
+  .hero { background: var(--navy); position: relative; min-height: 520px; display: flex; align-items: center; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 80% at 72% 50%, rgba(180,106,60,0.09) 0%, transparent 70%), linear-gradient(135deg, rgba(28,43,66,0.99) 0%, rgba(28,43,66,0.72) 100%); }
+  .hero-inner { position: relative; z-index: 2; max-width: 660px; }
+  .label { font-size: 10px; letter-spacing: 3.5px; text-transform: uppercase; color: var(--copper); font-weight: 600; margin-bottom: 14px; }
+  .hero .label { color: var(--copper-light); margin-bottom: 20px; }
+  .hero h1 { font-family: 'Cormorant Garamond', serif; font-size: 64px; font-weight: 300; color: white; line-height: 1.08; margin-bottom: 22px; }
+  .hero h1 em { font-style: italic; color: var(--copper-light); }
+  .hero p { font-size: 16px; color: rgba(255,255,255,0.6); line-height: 1.8; font-weight: 300; margin-bottom: 36px; max-width: 520px; }
+  .hero-pills { display: flex; gap: 12px; flex-wrap: wrap; }
+  .hero-pill { display: inline-flex; align-items: center; gap: 8px; background: rgba(180,106,60,0.14); border: 1px solid rgba(180,106,60,0.4); padding: 8px 16px; }
+  .hero-pill svg { width: 14px; height: 14px; flex-shrink: 0; }
+  .hero-pill span { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--copper-light); font-weight: 600; }
 
-    nav a:hover { color: var(--copper); }
+  /* ── LAYOUT ── */
+  .section { padding: 96px 0; }
+  .container { max-width: 1280px; margin: 0 auto; padding: 0 48px; }
+  .title { font-family: 'Cormorant Garamond', serif; font-size: 46px; font-weight: 400; color: var(--text-dark); line-height: 1.12; margin-bottom: 18px; }
+  .desc { font-size: 15px; color: var(--text-med); line-height: 1.75; font-weight: 300; max-width: 560px; }
+  .center { text-align: center; }
+  .center .desc { margin: 0 auto; }
 
-    nav .coming-soon {
-      color: rgba(255,255,255,.4);
-      cursor: default;
-      position: relative;
-    }
+  /* ── SERVICE CARDS ── */
+  .services { background: var(--white); }
+  .services-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-top: 56px; }
 
-    nav .coming-soon::after {
-      content: 'soon';
-      position: absolute;
-      top: -8px;
-      right: -2px;
-      font-size: .55rem;
-      letter-spacing: .05em;
-      color: var(--copper);
-      font-style: italic;
-    }
+  .svc-card { border: 1px solid var(--border); padding: 52px 44px; display: flex; flex-direction: column; transition: box-shadow .3s, transform .3s; position: relative; overflow: hidden; }
+  .svc-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--copper); transform: scaleX(0); transform-origin: left; transition: transform .3s; }
+  .svc-card:hover { box-shadow: 0 12px 40px rgba(0,0,0,0.1); transform: translateY(-4px); }
+  .svc-card:hover::before { transform: scaleX(1); }
 
-    /* ── HERO ────────────────────────────────────── */
-    .hero {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 7rem 2rem 6rem;
-      background: linear-gradient(160deg, var(--navy) 0%, #2a3f6a 100%);
-      color: #fff;
-    }
+  .svc-icon { width: 48px; height: 48px; background: var(--copper-glow); display: flex; align-items: center; justify-content: center; margin-bottom: 24px; }
+  .svc-icon svg { width: 22px; height: 22px; stroke: var(--copper); fill: none; stroke-width: 1.5; }
 
-    .hero-eyebrow {
-      font-family: 'Inter', sans-serif;
-      font-size: .75rem;
-      letter-spacing: .25em;
-      text-transform: uppercase;
-      color: var(--copper);
-      margin-bottom: 1.2rem;
-    }
+  .svc-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 30px; font-weight: 400; color: var(--text-dark); margin-bottom: 14px; }
+  .svc-card p { font-size: 14px; color: var(--text-med); line-height: 1.8; margin-bottom: 32px; flex: 1; }
 
-    .hero h1 {
-      font-family: 'Cormorant Garamond', serif;
-      font-weight: 300;
-      font-size: clamp(2.8rem, 6vw, 5rem);
-      line-height: 1.1;
-      margin-bottom: 1.4rem;
-    }
+  .svc-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 32px; }
+  .tag { display: inline-block; font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--copper); border: 1px solid rgba(180,106,60,0.3); padding: 4px 10px; font-weight: 500; }
 
-    .hero h1 em {
-      font-style: italic;
-      color: var(--copper);
-    }
+  .svc-link { display: inline-flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--copper); transition: gap .25s; }
+  .svc-link svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2; transition: transform .25s; }
+  .svc-card:hover .svc-link svg { transform: translateX(4px); }
 
-    .hero p {
-      font-size: 1rem;
-      font-weight: 300;
-      line-height: 1.7;
-      max-width: 540px;
-      color: rgba(255,255,255,.75);
-      margin-bottom: 2.4rem;
-    }
+  /* ── TRUST BAR ── */
+  .trust { background: var(--navy); padding: 60px 0; }
+  .trust-inner { display: flex; align-items: center; justify-content: center; }
+  .trust-item { flex: 1; text-align: center; padding: 0 40px; border-right: 1px solid rgba(255,255,255,0.1); }
+  .trust-item:last-child { border-right: none; }
+  .trust-num { font-family: 'Cormorant Garamond', serif; font-size: 40px; font-weight: 300; color: var(--copper-light); line-height: 1; margin-bottom: 6px; }
+  .trust-label { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.45); }
 
-    .btn {
-      display: inline-block;
-      padding: .85rem 2.2rem;
-      background: var(--copper);
-      color: #fff;
-      font-family: 'Inter', sans-serif;
-      font-size: .8rem;
-      font-weight: 500;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      text-decoration: none;
-      border-radius: 2px;
-      transition: background .2s, transform .15s;
-    }
+  /* ── CTA BAND ── */
+  .cta-band { background: var(--cream); border-top: 1px solid var(--border); padding: 80px 0; text-align: center; }
+  .cta-band h2 { font-family: 'Cormorant Garamond', serif; font-size: 42px; font-weight: 400; color: var(--text-dark); margin-bottom: 14px; }
+  .cta-band p { font-size: 15px; color: var(--text-med); font-weight: 300; margin-bottom: 36px; max-width: 480px; margin-left: auto; margin-right: auto; }
+  .btn-primary { display: inline-block; background: var(--copper); color: white; font-size: 10px; font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase; padding: 16px 44px; transition: background .25s; }
+  .btn-primary:hover { background: var(--copper-dark); }
 
-    .btn:hover { background: #c97a48; transform: translateY(-1px); }
+  /* ── FOOTER ── */
+  footer { background: var(--charcoal); padding: 64px 0 36px; }
+  .ft-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
+  .ft-brand .ft-logo { font-family: 'Cormorant Garamond', serif; font-size: 14px; letter-spacing: 3px; text-transform: uppercase; color: white; font-weight: 500; margin-bottom: 4px; }
+  .ft-brand .ft-logo-sub { font-size: 9px; letter-spacing: 3px; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: 16px; }
+  .ft-brand p { font-size: 13px; color: rgba(255,255,255,0.4); line-height: 1.8; max-width: 260px; }
+  .ft-col h4 { font-size: 10px; letter-spacing: 2.5px; text-transform: uppercase; color: var(--copper-light); margin-bottom: 16px; font-weight: 600; }
+  .ft-col a { display: block; font-size: 13px; color: rgba(255,255,255,0.45); margin-bottom: 9px; transition: color .2s; }
+  .ft-col a:hover { color: white; }
+  .ft-bottom { border-top: 1px solid rgba(255,255,255,0.07); padding-top: 24px; display: flex; justify-content: space-between; font-size: 11px; color: rgba(255,255,255,0.3); }
 
-    /* ── DIVIDER ─────────────────────────────────── */
-    .divider {
-      width: 48px;
-      height: 1px;
-      background: var(--copper);
-      margin: 0 auto;
-    }
-
-    /* ── SERVICES SECTION ────────────────────────── */
-    .services {
-      padding: 6rem 2rem;
-      max-width: 1000px;
-      margin: 0 auto;
-      text-align: center;
-    }
-
-    .section-label {
-      font-family: 'Inter', sans-serif;
-      font-size: .7rem;
-      letter-spacing: .25em;
-      text-transform: uppercase;
-      color: var(--copper);
-      margin-bottom: .8rem;
-    }
-
-    .services h2 {
-      font-family: 'Cormorant Garamond', serif;
-      font-weight: 300;
-      font-size: 2.4rem;
-      color: var(--navy);
-      margin-bottom: 1rem;
-    }
-
-    .services > p {
-      font-size: .95rem;
-      color: #666;
-      line-height: 1.7;
-      max-width: 520px;
-      margin: 0 auto 3.5rem;
-    }
-
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.5rem;
-    }
-
-    .card {
-      background: #fff;
-      border: 1px solid #e8e2d9;
-      border-radius: 4px;
-      padding: 2.4rem 2rem;
-      text-align: left;
-      transition: box-shadow .2s, transform .2s;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .card:hover { box-shadow: 0 8px 32px rgba(0,0,0,.1); transform: translateY(-3px); }
-
-    .card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0;
-      width: 3px; height: 100%;
-      background: var(--copper);
-    }
-
-    .card-icon {
-      font-size: 1.6rem;
-      margin-bottom: 1rem;
-    }
-
-    .card h3 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.4rem;
-      font-weight: 400;
-      color: var(--navy);
-      margin-bottom: .6rem;
-    }
-
-    .card p {
-      font-size: .88rem;
-      color: #666;
-      line-height: 1.7;
-      margin-bottom: 1.4rem;
-    }
-
-    .card a {
-      font-size: .75rem;
-      font-weight: 500;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-      color: var(--copper);
-      text-decoration: none;
-    }
-
-    .card a:hover { text-decoration: underline; }
-
-    .card .badge {
-      display: inline-block;
-      font-size: .65rem;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-      color: rgba(180,106,60,.6);
-      border: 1px solid rgba(180,106,60,.3);
-      border-radius: 20px;
-      padding: .2rem .65rem;
-    }
-
-    /* ── TRUST BAR ───────────────────────────────── */
-    .trust {
-      background: var(--navy);
-      color: rgba(255,255,255,.7);
-      padding: 3rem 2rem;
-      display: flex;
-      justify-content: center;
-      gap: 4rem;
-      flex-wrap: wrap;
-      text-align: center;
-    }
-
-    .trust-item strong {
-      display: block;
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 2rem;
-      font-weight: 300;
-      color: var(--copper);
-      line-height: 1;
-    }
-
-    .trust-item span {
-      font-size: .75rem;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-    }
-
-    /* ── FOOTER ──────────────────────────────────── */
-    footer {
-      background: #111;
-      color: rgba(255,255,255,.4);
-      text-align: center;
-      padding: 2rem;
-      font-size: .78rem;
-      letter-spacing: .05em;
-    }
-
-    footer a { color: var(--copper); text-decoration: none; }
-
-    /* ── RESPONSIVE ──────────────────────────────── */
-    @media (max-width: 600px) {
-      header { padding: 0 1.2rem; }
-      .logo { font-size: 1.2rem; }
-      nav { gap: 1.2rem; }
-      nav a { font-size: .7rem; }
-      .trust { gap: 2rem; }
-    }
-  </style>
+  /* ── RESPONSIVE ── */
+  @media (max-width: 960px) {
+    .container { padding: 0 24px; }
+    .section { padding: 64px 0; }
+    .hdr { padding: 0 24px; }
+    nav { display: none; }
+    .hero h1 { font-size: 44px; }
+    .services-grid { grid-template-columns: 1fr; }
+    .trust-inner { flex-wrap: wrap; gap: 32px; }
+    .trust-item { flex: 0 0 45%; border-right: none; }
+    .ft-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+  }
+  @media (max-width: 600px) {
+    .hero h1 { font-size: 34px; }
+    .title { font-size: 34px; }
+    .svc-card { padding: 36px 28px; }
+    .ft-grid { grid-template-columns: 1fr; }
+  }
+</style>
 </head>
 <body>
 
-  <header>
-    <a class="logo" href="index.html">Jonathan<span>'s</span> Jewelry</a>
+<!-- ANNOUNCEMENT BAR -->
+<div class="announce">Now Two Locations — Cottonwood Heights &amp; Trolley Square</div>
+
+<!-- HEADER -->
+<header>
+  <div class="hdr">
+    <a href="index.html" class="logo">Jonathan's<span>Jewelry</span></a>
     <nav>
       <a href="appraisals.html">Appraisals</a>
-      <a class="coming-soon" aria-disabled="true">Financing</a>
+      <a href="financing.html">Financing</a>
+      <a href="#">About</a>
+      <a href="#">Locations</a>
     </nav>
-  </header>
-
-  <section class="hero">
-    <p class="hero-eyebrow">Est. in Excellence</p>
-    <h1>Fine Jewelry,<br><em>Trusted</em> Expertise</h1>
-    <p>Professional jewelry appraisals, personalized service, and financing solutions — all under one roof.</p>
-    <a class="btn" href="appraisals.html">View Appraisal Services</a>
-  </section>
-
-  <section class="services">
-    <p class="section-label">What We Offer</p>
-    <h2>Our Services</h2>
-    <p>From certified appraisals to flexible financing, Jonathan's Jewelry provides expert care for your most treasured pieces.</p>
-
-    <div class="cards">
-      <div class="card">
-        <div class="card-icon">💎</div>
-        <h3>Appraisals</h3>
-        <p>Certified jewelry appraisals for insurance, estate, resale, and equitable distribution — completed with precision and care.</p>
-        <a href="appraisals.html">Learn More →</a>
-      </div>
-      <div class="card">
-        <div class="card-icon">💳</div>
-        <h3>Financing</h3>
-        <p>Flexible financing options to help you acquire the piece you love without compromise.</p>
-        <span class="badge">Coming Soon</span>
-      </div>
-    </div>
-  </section>
-
-  <div class="divider"></div>
-
-  <div class="trust">
-    <div class="trust-item">
-      <strong>GIA</strong>
-      <span>Certified Standards</span>
-    </div>
-    <div class="trust-item">
-      <strong>20+</strong>
-      <span>Years Experience</span>
-    </div>
-    <div class="trust-item">
-      <strong>100%</strong>
-      <span>Independent</span>
+    <div class="hdr-actions">
+      <a class="btn-book" href="appraisals.html#booking">Book Appointment</a>
     </div>
   </div>
+</header>
 
-  <footer>
-    <p>&copy; 2026 Jonathan's Jewelry &nbsp;·&nbsp; <a href="appraisals.html">Appraisals</a></p>
-  </footer>
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-inner">
+      <div class="label">Salt Lake City's Fine Jewelers Since 1976</div>
+      <h1>Fine Jewelry,<br><em>Expert Care</em></h1>
+      <p>Two locations, one trusted name. From certified appraisals to flexible financing, Jonathan's Jewelry is Salt Lake City's home for fine jewelry expertise.</p>
+      <div class="hero-pills">
+        <div class="hero-pill">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#C8845A" stroke-width="1.5"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span>GIA Graduate Gemologist</span>
+        </div>
+        <div class="hero-pill">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#C8845A" stroke-width="1.5"><path d="M17.657 16.657L13.414 20.9a2 2 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" stroke-linecap="round" stroke-linejoin="round"/><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span>Two SLC Locations</span>
+        </div>
+        <div class="hero-pill">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#C8845A" stroke-width="1.5"><path d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span>329+ Five-Star Reviews</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="section services">
+  <div class="container">
+    <div class="center">
+      <div class="label">Our Services</div>
+      <h2 class="title">Everything Your Jewelry Needs</h2>
+      <p class="desc">From protecting what you already own to acquiring something new — we have the expertise and the options to help.</p>
+    </div>
+
+    <div class="services-grid">
+
+      <!-- APPRAISALS -->
+      <a href="appraisals.html" class="svc-card">
+        <div class="svc-icon">
+          <svg viewBox="0 0 24 24"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <h3>Jewelry Appraisals</h3>
+        <p>Certified appraisals for insurance, estate, resale, and equitable distribution. GIA Graduate Gemologist on staff — Salt Lake City's most trusted appraisal service, backed by 50 years of expertise.</p>
+        <div class="svc-tags">
+          <span class="tag">Insurance</span>
+          <span class="tag">Estate</span>
+          <span class="tag">Diamond Grading</span>
+          <span class="tag">GIA Certified</span>
+        </div>
+        <span class="svc-link">
+          Learn More
+          <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+      </a>
+
+      <!-- FINANCING -->
+      <a href="financing.html" class="svc-card">
+        <div class="svc-icon">
+          <svg viewBox="0 0 24 24"><path d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <h3>Financing &amp; Leasing</h3>
+        <p>Pay your way, on your terms. Flexible financing through Synchrony, Wells Fargo, and Acima Leasing — plus our own no-interest in-house layaway. An option for every budget, with same-day approval.</p>
+        <div class="svc-tags">
+          <span class="tag">Synchrony</span>
+          <span class="tag">Wells Fargo</span>
+          <span class="tag">Acima Leasing</span>
+          <span class="tag">In-House Layaway</span>
+        </div>
+        <span class="svc-link">
+          Learn More
+          <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust">
+  <div class="container">
+    <div class="trust-inner">
+      <div class="trust-item">
+        <div class="trust-num">50+</div>
+        <div class="trust-label">Years of Experience</div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-num">GIA</div>
+        <div class="trust-label">Graduate Gemologist</div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-num">329+</div>
+        <div class="trust-label">Five-Star Reviews</div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-num">2</div>
+        <div class="trust-label">SLC Locations</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="cta-band">
+  <div class="container">
+    <h2>Ready to Get Started?</h2>
+    <p>Visit either Salt Lake City showroom or schedule an appointment with our team today.</p>
+    <a class="btn-primary" href="appraisals.html#booking">Book an Appointment</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="ft-grid">
+      <div class="ft-brand">
+        <div class="ft-logo">Jonathan's</div>
+        <div class="ft-logo-sub">Jewelry</div>
+        <p>Two extraordinary locations serving Salt Lake City since 1976. Expert jewelers, gemologists, and watchmakers dedicated to creating moments that last forever.</p>
+      </div>
+      <div class="ft-col">
+        <h4>Services</h4>
+        <a href="appraisals.html">Appraisals</a>
+        <a href="financing.html">Financing</a>
+      </div>
+      <div class="ft-col">
+        <h4>Cottonwood Heights</h4>
+        <a href="#">6910 S Highland Dr, Ste 5</a>
+        <a href="#">(801) 943-0303</a>
+        <a href="#">Tue–Fri 10am–6pm</a>
+        <a href="#">Sat 10am–4pm</a>
+      </div>
+      <div class="ft-col">
+        <h4>Trolley Square</h4>
+        <a href="#">329 Trolley Square</a>
+        <a href="#">(801) 328-0944</a>
+        <a href="#">Mon–Sat 11am–7pm</a>
+      </div>
+    </div>
+    <div class="ft-bottom">
+      <span>&copy; 2026 Jonathan's Jewelry. All rights reserved.</span>
+      <span>Privacy Policy &ensp;|&ensp; Terms</span>
+    </div>
+  </div>
+</footer>
 
 </body>
 </html>
