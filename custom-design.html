@@ -128,6 +128,13 @@
     pointer-events: auto;
     top: calc(100% + 8px);
   }
+  .dropdown::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: 0; right: 0;
+    height: 10px;
+  }
   .dropdown a {
     display: block;
     padding: 14px 22px;
