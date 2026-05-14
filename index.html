@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jonathan's Jewelry</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --copper: #B46A3C;
+      --navy:   #1B2A4A;
+      --cream:  #FAF7F2;
+      --text:   #2C2C2C;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+    }
+
+    /* ── HEADER ─────────────────────────────────── */
+    header {
+      background: var(--navy);
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 12px rgba(0,0,0,.35);
+    }
+
+    .logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: 1.55rem;
+      letter-spacing: .08em;
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .logo span {
+      color: var(--copper);
+    }
+
+    nav {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    nav a {
+      font-family: 'Inter', sans-serif;
+      font-size: .8rem;
+      font-weight: 500;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.85);
+      text-decoration: none;
+      transition: color .2s;
+    }
+
+    nav a:hover { color: var(--copper); }
+
+    nav .coming-soon {
+      color: rgba(255,255,255,.4);
+      cursor: default;
+      position: relative;
+    }
+
+    nav .coming-soon::after {
+      content: 'soon';
+      position: absolute;
+      top: -8px;
+      right: -2px;
+      font-size: .55rem;
+      letter-spacing: .05em;
+      color: var(--copper);
+      font-style: italic;
+    }
+
+    /* ── HERO ────────────────────────────────────── */
+    .hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 7rem 2rem 6rem;
+      background: linear-gradient(160deg, var(--navy) 0%, #2a3f6a 100%);
+      color: #fff;
+    }
+
+    .hero-eyebrow {
+      font-family: 'Inter', sans-serif;
+      font-size: .75rem;
+      letter-spacing: .25em;
+      text-transform: uppercase;
+      color: var(--copper);
+      margin-bottom: 1.2rem;
+    }
+
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: clamp(2.8rem, 6vw, 5rem);
+      line-height: 1.1;
+      margin-bottom: 1.4rem;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--copper);
+    }
+
+    .hero p {
+      font-size: 1rem;
+      font-weight: 300;
+      line-height: 1.7;
+      max-width: 540px;
+      color: rgba(255,255,255,.75);
+      margin-bottom: 2.4rem;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: .85rem 2.2rem;
+      background: var(--copper);
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+      font-size: .8rem;
+      font-weight: 500;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 2px;
+      transition: background .2s, transform .15s;
+    }
+
+    .btn:hover { background: #c97a48; transform: translateY(-1px); }
+
+    /* ── DIVIDER ─────────────────────────────────── */
+    .divider {
+      width: 48px;
+      height: 1px;
+      background: var(--copper);
+      margin: 0 auto;
+    }
+
+    /* ── SERVICES SECTION ────────────────────────── */
+    .services {
+      padding: 6rem 2rem;
+      max-width: 1000px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .section-label {
+      font-family: 'Inter', sans-serif;
+      font-size: .7rem;
+      letter-spacing: .25em;
+      text-transform: uppercase;
+      color: var(--copper);
+      margin-bottom: .8rem;
+    }
+
+    .services h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: 2.4rem;
+      color: var(--navy);
+      margin-bottom: 1rem;
+    }
+
+    .services > p {
+      font-size: .95rem;
+      color: #666;
+      line-height: 1.7;
+      max-width: 520px;
+      margin: 0 auto 3.5rem;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .card {
+      background: #fff;
+      border: 1px solid #e8e2d9;
+      border-radius: 4px;
+      padding: 2.4rem 2rem;
+      text-align: left;
+      transition: box-shadow .2s, transform .2s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card:hover { box-shadow: 0 8px 32px rgba(0,0,0,.1); transform: translateY(-3px); }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 3px; height: 100%;
+      background: var(--copper);
+    }
+
+    .card-icon {
+      font-size: 1.6rem;
+      margin-bottom: 1rem;
+    }
+
+    .card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-weight: 400;
+      color: var(--navy);
+      margin-bottom: .6rem;
+    }
+
+    .card p {
+      font-size: .88rem;
+      color: #666;
+      line-height: 1.7;
+      margin-bottom: 1.4rem;
+    }
+
+    .card a {
+      font-size: .75rem;
+      font-weight: 500;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--copper);
+      text-decoration: none;
+    }
+
+    .card a:hover { text-decoration: underline; }
+
+    .card .badge {
+      display: inline-block;
+      font-size: .65rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: rgba(180,106,60,.6);
+      border: 1px solid rgba(180,106,60,.3);
+      border-radius: 20px;
+      padding: .2rem .65rem;
+    }
+
+    /* ── TRUST BAR ───────────────────────────────── */
+    .trust {
+      background: var(--navy);
+      color: rgba(255,255,255,.7);
+      padding: 3rem 2rem;
+      display: flex;
+      justify-content: center;
+      gap: 4rem;
+      flex-wrap: wrap;
+      text-align: center;
+    }
+
+    .trust-item strong {
+      display: block;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      font-weight: 300;
+      color: var(--copper);
+      line-height: 1;
+    }
+
+    .trust-item span {
+      font-size: .75rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+
+    /* ── FOOTER ──────────────────────────────────── */
+    footer {
+      background: #111;
+      color: rgba(255,255,255,.4);
+      text-align: center;
+      padding: 2rem;
+      font-size: .78rem;
+      letter-spacing: .05em;
+    }
+
+    footer a { color: var(--copper); text-decoration: none; }
+
+    /* ── RESPONSIVE ──────────────────────────────── */
+    @media (max-width: 600px) {
+      header { padding: 0 1.2rem; }
+      .logo { font-size: 1.2rem; }
+      nav { gap: 1.2rem; }
+      nav a { font-size: .7rem; }
+      .trust { gap: 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a class="logo" href="index.html">Jonathan<span>'s</span> Jewelry</a>
+    <nav>
+      <a href="appraisals.html">Appraisals</a>
+      <a class="coming-soon" aria-disabled="true">Financing</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <p class="hero-eyebrow">Est. in Excellence</p>
+    <h1>Fine Jewelry,<br><em>Trusted</em> Expertise</h1>
+    <p>Professional jewelry appraisals, personalized service, and financing solutions — all under one roof.</p>
+    <a class="btn" href="appraisals.html">View Appraisal Services</a>
+  </section>
+
+  <section class="services">
+    <p class="section-label">What We Offer</p>
+    <h2>Our Services</h2>
+    <p>From certified appraisals to flexible financing, Jonathan's Jewelry provides expert care for your most treasured pieces.</p>
+
+    <div class="cards">
+      <div class="card">
+        <div class="card-icon">💎</div>
+        <h3>Appraisals</h3>
+        <p>Certified jewelry appraisals for insurance, estate, resale, and equitable distribution — completed with precision and care.</p>
+        <a href="appraisals.html">Learn More →</a>
+      </div>
+      <div class="card">
+        <div class="card-icon">💳</div>
+        <h3>Financing</h3>
+        <p>Flexible financing options to help you acquire the piece you love without compromise.</p>
+        <span class="badge">Coming Soon</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <div class="trust">
+    <div class="trust-item">
+      <strong>GIA</strong>
+      <span>Certified Standards</span>
+    </div>
+    <div class="trust-item">
+      <strong>20+</strong>
+      <span>Years Experience</span>
+    </div>
+    <div class="trust-item">
+      <strong>100%</strong>
+      <span>Independent</span>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2026 Jonathan's Jewelry &nbsp;·&nbsp; <a href="appraisals.html">Appraisals</a></p>
+  </footer>
+
+</body>
+</html>
