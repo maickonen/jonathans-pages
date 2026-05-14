@@ -41,7 +41,7 @@
   /* ── HEADER ── */
   header {
     background: var(--white);
-    border-bottom: 1px solid var(--border);
+    border-bottom: 1px solid #e8e4df;
     position: sticky;
     top: 0;
     z-index: 200;
@@ -49,10 +49,10 @@
   .hdr {
     max-width: 1280px;
     margin: 0 auto;
-    padding: 0 48px;
-    height: 80px;
+    padding: 0 40px;
+    height: 76px;
     display: grid;
-    grid-template-columns: 1fr auto 1fr;
+    grid-template-columns: 200px 1fr 200px;
     align-items: center;
   }
 
@@ -60,53 +60,31 @@
   .logo {
     display: flex;
     align-items: center;
-    gap: 10px;
     text-decoration: none;
     flex-shrink: 0;
   }
-  .logo-mark {
-    width: 44px;
-    height: 44px;
-    flex-shrink: 0;
-  }
-  .logo-text {
-    display: flex;
-    flex-direction: column;
-    line-height: 1;
-  }
-  .logo-text .top {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 16px;
-    font-weight: 600;
-    letter-spacing: 3.5px;
-    text-transform: uppercase;
-    color: var(--text-dark);
-  }
-  .logo-text .bot {
-    font-family: 'Inter', sans-serif;
-    font-size: 8px;
-    font-weight: 400;
-    letter-spacing: 5px;
-    text-transform: uppercase;
-    color: var(--text-med);
-    margin-top: 3px;
+  .logo img {
+    height: 48px;
+    width: auto;
+    display: block;
   }
 
   /* ── NAV ── */
   nav {
     display: flex;
     align-items: center;
-    gap: 28px;
+    justify-content: center;
+    gap: 32px;
   }
   .nav-item {
     position: relative;
   }
   .nav-item > a, .nav-item > span {
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    color: var(--text-dark);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 14.5px;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    color: #555;
     transition: color .2s;
     cursor: pointer;
     white-space: nowrap;
@@ -121,13 +99,13 @@
     position: absolute;
     bottom: -2px; left: 0;
     width: 0; height: 1px;
-    background: var(--copper);
+    background: var(--text-dark);
     transition: width .25s;
   }
-  .nav-item > a:hover, .nav-item > span:hover { color: var(--copper); }
+  .nav-item > a:hover, .nav-item > span:hover { color: var(--text-dark); }
   .nav-item > a:hover::after, .nav-item > span:hover::after,
   .nav-item:hover > a::after, .nav-item:hover > span::after { width: 100%; }
-  .nav-item:hover > a, .nav-item:hover > span { color: var(--copper); }
+  .nav-item:hover > a, .nav-item:hover > span { color: var(--text-dark); }
 
   /* chevron for Services */
   .nav-chevron {
@@ -146,9 +124,9 @@
     left: 50%;
     transform: translateX(-50%);
     background: var(--white);
-    border: 1px solid var(--border);
-    min-width: 180px;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+    border: 1px solid #e8e4df;
+    min-width: 200px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.08);
     opacity: 0;
     pointer-events: none;
     transition: opacity .2s, top .2s;
@@ -160,23 +138,22 @@
   }
   .dropdown a {
     display: block;
-    padding: 13px 20px;
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    color: var(--text-dark);
-    border-bottom: 1px solid var(--border);
+    padding: 14px 22px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 14px;
+    font-weight: 400;
+    color: #555;
+    border-bottom: 1px solid #f0ece6;
     transition: background .2s, color .2s;
   }
   .dropdown a:last-child { border-bottom: none; }
-  .dropdown a:hover { background: var(--cream); color: var(--copper); }
+  .dropdown a:hover { background: var(--cream); color: var(--text-dark); }
   .dropdown a span {
     display: block;
+    font-family: 'Inter', sans-serif;
     font-size: 10px;
     font-weight: 300;
     letter-spacing: 0;
-    text-transform: none;
     color: var(--text-med);
     margin-top: 2px;
   }
@@ -186,18 +163,18 @@
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    gap: 20px;
+    gap: 22px;
   }
   .hdr-icon {
-    width: 20px; height: 20px;
-    stroke: var(--text-dark);
+    width: 19px; height: 19px;
+    stroke: #555;
     fill: none;
-    stroke-width: 1.5;
+    stroke-width: 1.4;
     cursor: pointer;
     transition: stroke .2s;
     flex-shrink: 0;
   }
-  .hdr-icon:hover { stroke: var(--copper); }
+  .hdr-icon:hover { stroke: var(--text-dark); }
 
   /* ── HERO ── */
   .hero {
@@ -338,7 +315,7 @@
 <body>
 
 <!-- ANNOUNCEMENT BAR -->
-<div class="announce">Now Two Locations — Cottonwood Heights &nbsp;&amp;&nbsp; Trolley Square</div>
+<div class="announce">Now Two Locations &mdash; Cottonwood Heights &amp; Trolley Square</div>
 
 <!-- HEADER -->
 <header>
@@ -346,29 +323,7 @@
 
     <!-- LOGO -->
     <a href="index.html" class="logo">
-      <svg class="logo-mark" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <!-- outer ring -->
-        <ellipse cx="22" cy="22" rx="20" ry="20" stroke="#1C2B42" stroke-width="1"/>
-        <!-- inner ellipse -->
-        <ellipse cx="22" cy="22" rx="13" ry="9" stroke="#1C2B42" stroke-width="0.8"/>
-        <!-- diamond gem shape -->
-        <polygon points="22,13 27,20 22,25 17,20" stroke="#B46A3C" stroke-width="1" fill="none"/>
-        <!-- gem facet lines -->
-        <line x1="17" y1="20" x2="22" y2="25" stroke="#B46A3C" stroke-width="0.7"/>
-        <line x1="27" y1="20" x2="22" y2="25" stroke="#B46A3C" stroke-width="0.7"/>
-        <line x1="22" y1="13" x2="17" y2="20" stroke="#B46A3C" stroke-width="0.7"/>
-        <line x1="22" y1="13" x2="27" y2="20" stroke="#B46A3C" stroke-width="0.7"/>
-        <line x1="17" y1="20" x2="27" y2="20" stroke="#B46A3C" stroke-width="0.7"/>
-        <!-- crosshair marks on ring -->
-        <line x1="22" y1="1.5" x2="22" y2="5" stroke="#1C2B42" stroke-width="1"/>
-        <line x1="22" y1="39" x2="22" y2="42.5" stroke="#1C2B42" stroke-width="1"/>
-        <line x1="1.5" y1="22" x2="5" y2="22" stroke="#1C2B42" stroke-width="1"/>
-        <line x1="39" y1="22" x2="42.5" y2="22" stroke="#1C2B42" stroke-width="1"/>
-      </svg>
-      <div class="logo-text">
-        <span class="top">Jonathan's</span>
-        <span class="bot">Jewelry</span>
-      </div>
+      <img src="https://jonathans-jewelry-2.myshopify.com/cdn/shop/files/Jonathan_s_Jewelry_logo.png?v=1776973278&width=320" alt="Jonathan's Jewelry" />
     </a>
 
     <!-- NAV (centered via grid) -->
