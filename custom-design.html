@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Custom Design — Jonathan's Jewelry</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --copper:        #B46A3C;
+    --copper-light:  #C8845A;
+    --copper-dark:   #8B4F28;
+    --copper-glow:   rgba(180,106,60,0.12);
+    --navy:          #1C2B42;
+    --charcoal:      #2A2A2A;
+    --cream:         #F5F2EE;
+    --warm-white:    #FDFCFA;
+    --white:         #ffffff;
+    --text-dark:     #1a1a1a;
+    --text-body:     #4a4a4a;
+    --text-med:      #6e6e6e;
+    --text-light:    #aaaaaa;
+    --border:        #E5E0DA;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Inter', sans-serif; color: var(--text-body); background: var(--warm-white); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+  img { display: block; max-width: 100%; }
+  a { color: inherit; text-decoration: none; }
+
+  /* ── ANNOUNCEMENT BAR ── */
+  .announce {
+    background: var(--navy);
+    color: rgba(255,255,255,0.85);
+    font-size: 10.5px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 10px 24px;
+  }
+
+  /* ── HEADER ── */
+  header {
+    background: var(--white);
+    border-bottom: 1px solid #e8e4df;
+    position: sticky;
+    top: 0;
+    z-index: 200;
+  }
+  .hdr {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 40px;
+    height: 76px;
+    display: grid;
+    grid-template-columns: 200px 1fr 200px;
+    align-items: center;
+  }
+  .logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    flex-shrink: 0;
+  }
+  .logo img {
+    height: 48px;
+    width: auto;
+    display: block;
+  }
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 32px;
+  }
+  .nav-item { position: relative; }
+  .nav-item > a, .nav-item > span {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 14.5px;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    color: #555;
+    transition: color .2s;
+    cursor: pointer;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 0;
+    position: relative;
+  }
+  .nav-item > a::after, .nav-item > span::after {
+    content: '';
+    position: absolute;
+    bottom: -2px; left: 0;
+    width: 0; height: 1px;
+    background: var(--text-dark);
+    transition: width .25s;
+  }
+  .nav-item > a:hover, .nav-item > span:hover { color: var(--text-dark); }
+  .nav-item > a:hover::after, .nav-item > span:hover::after,
+  .nav-item:hover > a::after, .nav-item:hover > span::after { width: 100%; }
+  .nav-item:hover > a, .nav-item:hover > span { color: var(--text-dark); }
+  .nav-chevron {
+    width: 10px; height: 10px;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 2;
+    transition: transform .2s;
+  }
+  .nav-item:hover .nav-chevron { transform: rotate(180deg); }
+  .dropdown {
+    position: absolute;
+    top: calc(100% + 16px);
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--white);
+    border: 1px solid #e8e4df;
+    min-width: 200px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .2s, top .2s;
+  }
+  .nav-item:hover .dropdown {
+    opacity: 1;
+    pointer-events: auto;
+    top: calc(100% + 8px);
+  }
+  .dropdown a {
+    display: block;
+    padding: 14px 22px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 14px;
+    font-weight: 400;
+    color: #555;
+    border-bottom: 1px solid #f0ece6;
+    transition: background .2s, color .2s;
+  }
+  .dropdown a:last-child { border-bottom: none; }
+  .dropdown a:hover { background: var(--cream); color: var(--text-dark); }
+  .dropdown a span {
+    display: block;
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 300;
+    letter-spacing: 0;
+    color: var(--text-med);
+    margin-top: 2px;
+  }
+  .hdr-icons {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 22px;
+  }
+  .hdr-icon {
+    width: 19px; height: 19px;
+    stroke: #555;
+    fill: none;
+    stroke-width: 1.4;
+    cursor: pointer;
+    transition: stroke .2s;
+    flex-shrink: 0;
+  }
+  .hdr-icon:hover { stroke: var(--text-dark); }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 1280px; margin: 0 auto; padding: 0 48px; }
+  .label { font-size: 10px; letter-spacing: 3.5px; text-transform: uppercase; color: var(--copper); font-weight: 600; margin-bottom: 14px; }
+  .title { font-family: 'Cormorant Garamond', serif; font-size: 46px; font-weight: 400; color: var(--text-dark); line-height: 1.12; margin-bottom: 18px; }
+  .desc { font-size: 15px; color: var(--text-med); line-height: 1.75; font-weight: 300; max-width: 560px; }
+  .center { text-align: center; }
+  .center .desc { margin: 0 auto; }
+
+  /* ── PAGE HERO ── */
+  .page-hero {
+    position: relative;
+    min-height: 480px;
+    overflow: hidden;
+    background: var(--navy);
+    display: flex;
+    align-items: center;
+  }
+  .page-hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(28,43,66,0.97) 0%, rgba(28,43,66,0.65) 100%);
+  }
+  .page-hero .container { position: relative; z-index: 2; }
+  .page-hero .label { color: var(--copper-light); margin-bottom: 20px; }
+  .page-hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 62px;
+    font-weight: 300;
+    color: white;
+    line-height: 1.1;
+    margin-bottom: 20px;
+  }
+  .page-hero h1 em { font-style: italic; color: var(--copper-light); }
+  .page-hero p {
+    font-size: 16px;
+    color: rgba(255,255,255,0.62);
+    line-height: 1.75;
+    max-width: 520px;
+    font-weight: 300;
+  }
+
+  /* ── PROCESS ── */
+  .process { background: var(--white); padding: 96px 0; }
+  .proc-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    margin-top: 64px;
+  }
+  .proc-step {
+    text-align: center;
+    padding: 40px 32px;
+    position: relative;
+  }
+  .proc-step:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    right: 0; top: 30%;
+    height: 40%; width: 1px;
+    background: var(--border);
+  }
+  .proc-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 56px;
+    color: var(--copper);
+    font-weight: 300;
+    line-height: 1;
+    margin-bottom: 12px;
+    opacity: 0.7;
+  }
+  .proc-step h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    color: var(--text-dark);
+    margin-bottom: 12px;
+    font-weight: 500;
+  }
+  .proc-step p { font-size: 14px; color: var(--text-med); line-height: 1.7; }
+
+  /* ── SHOWCASE ── */
+  .showcase { background: var(--cream); padding: 96px 0 0; }
+  .show-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    min-height: 480px;
+  }
+  .show-row.reverse { direction: rtl; }
+  .show-row.reverse > * { direction: ltr; }
+  .show-img {
+    background: linear-gradient(135deg, #e8e0d6 0%, #d4c8b8 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 480px;
+  }
+  .show-img-placeholder {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    color: var(--text-light);
+    font-style: italic;
+  }
+  .show-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 64px 72px;
+  }
+  .show-content .label { margin-bottom: 12px; }
+  .show-content h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 36px;
+    color: var(--text-dark);
+    font-weight: 400;
+    margin-bottom: 16px;
+  }
+  .show-content p { font-size: 15px; color: var(--text-med); line-height: 1.8; margin-bottom: 28px; }
+  .detail-list { list-style: none; }
+  .detail-list li {
+    font-size: 14px;
+    color: var(--text-body);
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .detail-list li::before { content: '\2726'; color: var(--copper); font-size: 10px; }
+
+  /* ── TESTIMONIAL BAND ── */
+  .testi-band { background: var(--charcoal); padding: 80px 0; text-align: center; }
+  .testi-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 30px;
+    font-weight: 300;
+    color: white;
+    line-height: 1.55;
+    max-width: 780px;
+    margin: 0 auto 24px;
+    font-style: italic;
+  }
+  .testi-author { font-size: 11px; color: var(--copper-light); letter-spacing: 2px; text-transform: uppercase; }
+
+  /* ── PRICING BAND ── */
+  .pricing-band { background: var(--white); padding: 96px 0; }
+  .price-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+    margin-top: 48px;
+  }
+  .price-card {
+    border: 1px solid var(--border);
+    padding: 48px 36px;
+    text-align: center;
+    transition: box-shadow .3s, transform .3s;
+  }
+  .price-card:hover { box-shadow: 0 8px 32px rgba(0,0,0,0.08); transform: translateY(-4px); }
+  .price-card.featured {
+    border-color: var(--copper);
+    position: relative;
+  }
+  .price-card.featured::before {
+    content: 'MOST POPULAR';
+    position: absolute;
+    top: -12px; left: 50%;
+    transform: translateX(-50%);
+    background: var(--copper);
+    color: white;
+    font-size: 10px;
+    letter-spacing: 2px;
+    padding: 4px 16px;
+  }
+  .price-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    color: var(--text-dark);
+    margin-bottom: 8px;
+  }
+  .price-from { font-size: 13px; color: var(--text-light); margin-bottom: 24px; }
+  .price-card ul { list-style: none; text-align: left; margin-bottom: 32px; }
+  .price-card ul li {
+    font-size: 14px;
+    color: var(--text-body);
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .card-btn {
+    display: inline-block;
+    padding: 14px 36px;
+    border: 1px solid var(--copper);
+    color: var(--copper);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    transition: all .25s;
+  }
+  .card-btn:hover { background: var(--copper); color: white; }
+  .price-card.featured .card-btn { background: var(--copper); color: white; }
+
+  /* ── CTA BAND ── */
+  .cta-band { background: var(--navy); padding: 80px 0; text-align: center; }
+  .cta-band h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 42px;
+    font-weight: 400;
+    color: white;
+    margin-bottom: 14px;
+  }
+  .cta-band p { font-size: 15px; color: rgba(255,255,255,0.55); font-weight: 300; margin-bottom: 36px; }
+  .btn-primary {
+    display: inline-block;
+    background: var(--copper);
+    color: white;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    padding: 16px 44px;
+    transition: background .25s;
+  }
+  .btn-primary:hover { background: var(--copper-dark); }
+
+  /* ── FOOTER ── */
+  footer { background: var(--charcoal); padding: 64px 0 36px; }
+  .ft-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
+  .ft-brand .ft-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 14px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: white;
+    font-weight: 500;
+    margin-bottom: 4px;
+  }
+  .ft-brand .ft-logo-sub { font-size: 9px; letter-spacing: 3px; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: 16px; }
+  .ft-brand p { font-size: 13px; color: rgba(255,255,255,0.4); line-height: 1.8; max-width: 260px; }
+  .ft-col h4 { font-size: 10px; letter-spacing: 2.5px; text-transform: uppercase; color: var(--copper-light); margin-bottom: 16px; font-weight: 600; }
+  .ft-col a { display: block; font-size: 13px; color: rgba(255,255,255,0.45); margin-bottom: 9px; transition: color .2s; }
+  .ft-col a:hover { color: white; }
+  .ft-bottom { border-top: 1px solid rgba(255,255,255,0.07); padding-top: 24px; display: flex; justify-content: space-between; font-size: 11px; color: rgba(255,255,255,0.3); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 960px) {
+    .container { padding: 0 24px; }
+    .hdr { padding: 0 24px; }
+    nav { display: none; }
+    .hdr { grid-template-columns: 1fr auto; }
+    .page-hero h1 { font-size: 40px; }
+    .proc-grid { grid-template-columns: 1fr 1fr; }
+    .show-row, .show-row.reverse { grid-template-columns: 1fr; direction: ltr; }
+    .show-row.reverse > * { direction: ltr; }
+    .price-cards { grid-template-columns: 1fr; }
+    .ft-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+  }
+  @media (max-width: 600px) {
+    .page-hero h1 { font-size: 32px; }
+    .proc-grid { grid-template-columns: 1fr; }
+    .show-content { padding: 40px 28px; }
+    .ft-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ANNOUNCEMENT BAR -->
+<div class="announce">Now Two Locations &mdash; Cottonwood Heights &amp; Trolley Square</div>
+
+<!-- HEADER -->
+<header>
+  <div class="hdr">
+
+    <a href="index.html" class="logo">
+      <img src="https://jonathans-jewelry-2.myshopify.com/cdn/shop/files/Jonathan_s_Jewelry_logo.png?v=1776973278&width=320" alt="Jonathan's Jewelry" />
+    </a>
+
+    <nav>
+      <div class="nav-item"><a href="#">Custom</a></div>
+
+      <div class="nav-item">
+        <span>
+          Services
+          <svg class="nav-chevron" viewBox="0 0 12 12"><polyline points="2,4 6,8 10,4"/></svg>
+        </span>
+        <div class="dropdown">
+          <a href="appraisals.html">
+            Appraisals
+            <span>Insurance, estate &amp; gemological</span>
+          </a>
+          <a href="financing.html">
+            Financing
+            <span>Synchrony, Wells Fargo, Acima</span>
+          </a>
+          <a href="custom-design.html">
+            Custom Design
+            <span>Bespoke jewelry creation</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="nav-item"><a href="#">Fashion</a></div>
+      <div class="nav-item"><a href="#">Engagement</a></div>
+      <div class="nav-item"><a href="#">Designers</a></div>
+      <div class="nav-item"><a href="#">About</a></div>
+      <div class="nav-item"><a href="#">Locations</a></div>
+    </nav>
+
+    <div class="hdr-icons">
+      <svg class="hdr-icon" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="7" r="4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <svg class="hdr-icon" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8" stroke-linecap="round" stroke-linejoin="round"/><line x1="21" y1="21" x2="16.65" y2="16.65" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <svg class="hdr-icon" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" stroke-linecap="round" stroke-linejoin="round"/><line x1="3" y1="6" x2="21" y2="6" stroke-linecap="round" stroke-linejoin="round"/><path d="M16 10a4 4 0 01-8 0" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </div>
+
+  </div>
+</header>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="container">
+    <div class="label">Bespoke Creations</div>
+    <h1>Design Something<br><em>Truly Yours</em></h1>
+    <p>From first sketch to final polish — our master jewelers bring your vision to life with decades of expertise and an obsessive attention to detail.</p>
+  </div>
+</div>
+
+<!-- PROCESS -->
+<section class="process">
+  <div class="container center">
+    <div class="label">How It Works</div>
+    <h2 class="title">Your Custom Journey</h2>
+    <p class="desc">Every piece begins with a conversation and ends with something that tells your story.</p>
+    <div class="proc-grid">
+      <div class="proc-step">
+        <div class="proc-num">01</div>
+        <h3>Consultation</h3>
+        <p>Share your vision with one of our design experts. We'll discuss style, materials, budget, and timeline in a private appointment.</p>
+      </div>
+      <div class="proc-step">
+        <div class="proc-num">02</div>
+        <h3>Design</h3>
+        <p>Our team creates detailed CAD renderings and hand sketches. You'll see your piece take shape before any metalwork begins.</p>
+      </div>
+      <div class="proc-step">
+        <div class="proc-num">03</div>
+        <h3>Craftsmanship</h3>
+        <p>Master jewelers handcraft your piece in our in-house workshop using only the finest materials and conflict-free gemstones.</p>
+      </div>
+      <div class="proc-step">
+        <div class="proc-num">04</div>
+        <h3>Reveal</h3>
+        <p>Experience the moment your creation comes to life. Final quality inspection, professional appraisal, and a lifetime care plan included.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SHOWCASE -->
+<section class="showcase">
+
+  <div class="show-row">
+    <div class="show-img">
+      <div class="show-img-placeholder">[ Custom Engagement Ring Photo ]</div>
+    </div>
+    <div class="show-content">
+      <div class="label">Engagement Rings</div>
+      <h3>One-of-a-Kind Engagement Rings</h3>
+      <p>Skip the mass-produced settings. Design a ring that reflects your unique love story — from selecting the perfect center stone to every detail of the band.</p>
+      <ul class="detail-list">
+        <li>Center stone selection with GIA certification</li>
+        <li>Custom CAD rendering included</li>
+        <li>Platinum, 18k, 14k white/yellow/rose gold</li>
+        <li>4–6 week typical turnaround</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="show-row reverse">
+    <div class="show-img">
+      <div class="show-img-placeholder">[ Custom Wedding Band Photo ]</div>
+    </div>
+    <div class="show-content">
+      <div class="label">Wedding Bands</div>
+      <h3>Wedding Bands as Unique as Your Bond</h3>
+      <p>From hand-engraved vintage styles to sleek modern designs — matching bands, mixed metals, hidden gemstones, and personal engravings.</p>
+      <ul class="detail-list">
+        <li>His &amp; hers matching sets available</li>
+        <li>Hand engraving by master artisans</li>
+        <li>Comfort-fit options</li>
+        <li>Lifetime resizing included</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="show-row">
+    <div class="show-img">
+      <div class="show-img-placeholder">[ Custom Pendant / Necklace Photo ]</div>
+    </div>
+    <div class="show-content">
+      <div class="label">Fine Jewelry</div>
+      <h3>Pendants, Earrings &amp; Beyond</h3>
+      <p>Anniversary gifts, heirloom redesigns, or something completely new — our designers work with you to create pieces that carry meaning for generations.</p>
+      <ul class="detail-list">
+        <li>Redesign existing heirloom pieces</li>
+        <li>Birthstone &amp; personalized options</li>
+        <li>Corporate &amp; group custom orders</li>
+        <li>Full appraisal upon completion</li>
+      </ul>
+    </div>
+  </div>
+
+</section>
+
+<!-- TESTIMONIAL BAND -->
+<div class="testi-band">
+  <div class="container">
+    <div class="testi-quote">"They turned my grandmother's ring into something modern that still honors the original. I wear it every day and think of her."</div>
+    <div class="testi-author">Sarah W. &ensp;|&ensp; Cottonwood Heights</div>
+  </div>
+</div>
+
+<!-- PRICING BAND -->
+<section class="pricing-band">
+  <div class="container center">
+    <div class="label">Custom Design Starting Points</div>
+    <h2 class="title">Investment Guide</h2>
+    <p class="desc">Every piece is unique — these ranges help you plan. Exact pricing is determined during your free consultation.</p>
+    <div class="price-cards">
+
+      <div class="price-card">
+        <h3>Simple Custom</h3>
+        <div class="price-from">Starting from $800</div>
+        <ul>
+          <li>Modification of existing design</li>
+          <li>Single metal type</li>
+          <li>Standard stone setting</li>
+          <li>2–3 week turnaround</li>
+        </ul>
+        <a class="card-btn" href="#">Text for Quote</a>
+      </div>
+
+      <div class="price-card featured">
+        <h3>Full Custom</h3>
+        <div class="price-from">Starting from $2,500</div>
+        <ul>
+          <li>Original CAD design</li>
+          <li>Premium materials</li>
+          <li>Complex stone work</li>
+          <li>4–6 week turnaround</li>
+        </ul>
+        <a class="card-btn" href="#">Schedule Consultation</a>
+      </div>
+
+      <div class="price-card">
+        <h3>Heirloom Redesign</h3>
+        <div class="price-from">Starting from $1,200</div>
+        <ul>
+          <li>Existing piece transformation</li>
+          <li>Stone transfer &amp; resetting</li>
+          <li>Metal repurposing options</li>
+          <li>3–5 week turnaround</li>
+        </ul>
+        <a class="card-btn" href="#">Text for Quote</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<div class="cta-band">
+  <div class="container">
+    <h2>Begin Your Journey</h2>
+    <p>Visit us at either location or schedule a private appointment with one of our design experts.</p>
+    <a class="btn-primary" href="#">Schedule a Consultation</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="ft-grid">
+      <div class="ft-brand">
+        <div class="ft-logo">Jonathan's</div>
+        <div class="ft-logo-sub">Jewelry</div>
+        <p>Two extraordinary locations serving Salt Lake City since 1976. Expert jewelers, gemologists, and watchmakers dedicated to creating moments that last forever.</p>
+      </div>
+      <div class="ft-col">
+        <h4>Services</h4>
+        <a href="appraisals.html">Appraisals</a>
+        <a href="financing.html">Financing</a>
+        <a href="custom-design.html">Custom Design</a>
+        <a href="#">Jewelry Repair</a>
+      </div>
+      <div class="ft-col">
+        <h4>Cottonwood Heights</h4>
+        <a href="#">6910 S Highland Dr, Ste 5</a>
+        <a href="#">(801) 943-0303</a>
+        <a href="#">Tue–Fri 10am–6pm</a>
+        <a href="#">Sat 10am–4pm</a>
+      </div>
+      <div class="ft-col">
+        <h4>Trolley Square</h4>
+        <a href="#">329 Trolley Square</a>
+        <a href="#">(801) 328-0944</a>
+        <a href="#">Mon–Sat 11am–7pm</a>
+      </div>
+    </div>
+    <div class="ft-bottom">
+      <span>&copy; 2026 Jonathan's Jewelry. All rights reserved.</span>
+      <span>Privacy Policy &ensp;|&ensp; Terms</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
